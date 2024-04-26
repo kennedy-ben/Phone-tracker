@@ -1,17 +1,13 @@
 import phonenumbers
+from phonenumbers import geocoder, carrier
 
-from test import number
 
-from phonenumbers import geocoder
+number = "+25490908090"  
 
-yourLocation = geocoder.description_for_number(phonenumbers,"en")
-print(yourLocation)
+parsed_number = phonenumbers.parse(number, "CH")
 
-ch_number = phonenumbers.parse(number,"CH")
-print(geocoder.description_for_number(ch_number,"en"))
+location = geocoder.description_for_number(parsed_number, "en")
+print("Geographic Location:", location)
 
-from phonenumbers import carrier
-
-service_number = phonenumbers.parse(number, "RO")
-
-print(carrier.name_for_number(service_number,"en"))
+carrier_name = carrier.name_for_number(parsed_number, "en")
+print("Carrier Name:", carrier_name)
